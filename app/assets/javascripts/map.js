@@ -21,11 +21,21 @@ $(function() {
         .enter()
         .append("path")
         .attr("d", path)
+        .classed("neutral", true)
         .on("click", click);
   });
 
   function click(d) {
-    console.log(d.properties.name);
+    if (this.classList == "neutral") {
+      d3.select(this)
+          .classed({"neutral": false, "blue": true})
+    } else if (this.classList == "blue") {
+      d3.select(this)
+          .classed({"blue": false, "red": true})
+    } else {
+      d3.select(this)
+          .classed({"red": false, "neutral": true})
+    }
   };
 
 })
