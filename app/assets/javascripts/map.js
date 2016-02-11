@@ -20,7 +20,12 @@ $(function() {
         .data(json.features)
         .enter()
         .append("path")
-        .attr("d", path);
-  })
+        .attr("d", path)
+        .on("click", click);
+  });
+
+  function click(d) {
+    console.log(d.properties.name);
+  };
 
 })
