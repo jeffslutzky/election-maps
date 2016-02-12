@@ -34,13 +34,20 @@ $(function() {
     if (this.classList == "neutral") {
       d3.select(this)
           .classed({"neutral": false, "blue": true});
+      blueStates.push(d.ev);
     } else if (this.classList == "blue") {
       d3.select(this)
-          .classed({"blue": false, "red": true})
+          .classed({"blue": false, "red": true});
+      blueStates.splice($.inArray(d.ev, blueStates),1);
+      redStates.push(d.ev);
     } else {
       d3.select(this)
-          .classed({"red": false, "neutral": true})
+          .classed({"red": false, "neutral": true});
+      redStates.splice($.inArray(d.ev, redStates),1);
     };
+    console.log("blue: "+blueStates);
+    console.log("red: "+redStates);
+    
   };
 
 })
