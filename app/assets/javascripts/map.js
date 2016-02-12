@@ -25,17 +25,22 @@ $(function() {
         .on("click", click);
   });
 
+  var blueStates = [];
+  var redStates = [];
+  var blueEV = 0;
+  var redEV = 0;
+
   function click(d) {
     if (this.classList == "neutral") {
       d3.select(this)
-          .classed({"neutral": false, "blue": true})
+          .classed({"neutral": false, "blue": true});
     } else if (this.classList == "blue") {
       d3.select(this)
           .classed({"blue": false, "red": true})
     } else {
       d3.select(this)
           .classed({"red": false, "neutral": true})
-    }
+    };
   };
 
 })
