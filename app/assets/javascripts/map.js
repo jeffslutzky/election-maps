@@ -5,7 +5,7 @@ $(function() {
 
   var projection = d3.geo.albersUsa()
       .translate([w/2, h/2])
-      .scale([1300]);
+      .scale([1500]);
 
   var path = d3.geo.path()
       .projection(projection);
@@ -34,20 +34,24 @@ $(function() {
     if (this.classList == "neutral") {
       d3.select(this)
           .classed({"neutral": false, "blue": true});
-      blueStates.push(d.ev);
+      blueStates.push(d.properties.name);
+      blueEV += d.ev;
     } else if (this.classList == "blue") {
       d3.select(this)
           .classed({"blue": false, "red": true});
-      blueStates.splice($.inArray(d.ev, blueStates),1);
-      redStates.push(d.ev);
+      blueStates.splice($.inArray(d.properties.name, blueStates),1);
+      blueEV -= d.ev;
+      redStates.push(d.properties.name);
+      redEV += d.ev;
     } else {
       d3.select(this)
           .classed({"red": false, "neutral": true});
-      redStates.splice($.inArray(d.ev, redStates),1);
+      redStates.splice($.inArray(d.properties.name, redStates),1);
+      redEV -= d.ev;
     };
-    console.log("blue: "+blueStates);
-    console.log("red: "+redStates);
-    
+    console.log("blue: "+blueEV);
+    console.log("red: "+redEV);
+
   };
 
 })
