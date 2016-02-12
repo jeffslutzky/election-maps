@@ -23,6 +23,15 @@ $(function() {
         .attr("d", path)
         .classed("neutral", true)
         .on("click", click);
+    svg.selectAll("text")
+        .data(json.features)
+        .enter()
+        .append("text")
+        .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+        .attr("dy", ".35em")
+        .attr("dx", "-.3em")
+        .attr("class", "ev")
+        .text(function(d) { return d.ev; });
   });
 
   var blueStates = [];
@@ -49,9 +58,8 @@ $(function() {
       redStates.splice($.inArray(d.properties.name, redStates),1);
       redEV -= d.ev;
     };
-    console.log("blue: "+blueEV);
-    console.log("red: "+redEV);
-
+    $("#dems").text(blueEV);
+    $("#reps").text(redEV);
   };
 
 })
