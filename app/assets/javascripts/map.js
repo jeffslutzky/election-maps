@@ -42,32 +42,6 @@ $(function() {
   var redEV = 0;
   var noEV = 538;
 
-  function rightClick(d) {
-    if (this.classList == "neutral") {
-      d3.select(this)
-          .classed({"neutral": false, "red": true});
-      redStates.push(d.properties.name);
-      redEV += d.ev;
-      noEV -= d.ev;
-    } else if (this.classList == "blue") {
-      d3.select(this)
-          .classed({"blue": false, "neutral": true});
-      blueStates.splice($.inArray(d.properties.name, blueStates),1);
-      blueEV -= d.ev;
-      // redStates.push(d.properties.name);
-      noEV += d.ev;
-    } else {
-      d3.select(this)
-          .classed({"red": false, "blue": true});
-      redStates.splice($.inArray(d.properties.name, redStates),1);
-      redEV -= d.ev;
-      blueEV += d.ev;
-    };
-    $("#dems").text(blueEV);
-    $("#reps").text(redEV);
-    $("#unassigned").text(noEV);
-  };
-
   function click(d) {
     if (this.classList == "neutral") {
       d3.select(this)
@@ -93,5 +67,30 @@ $(function() {
     $("#reps").text(redEV);
     $("#unassigned").text(noEV);
   };
-
 })
+
+  function rightClick(d) {
+    if (this.classList == "neutral") {
+      d3.select(this)
+      .classed({"neutral": false, "red": true});
+      redStates.push(d.properties.name);
+      redEV += d.ev;
+      noEV -= d.ev;
+    } else if (this.classList == "blue") {
+      d3.select(this)
+      .classed({"blue": false, "neutral": true});
+      blueStates.splice($.inArray(d.properties.name, blueStates),1);
+      blueEV -= d.ev;
+      noEV += d.ev;
+    } else {
+      d3.select(this)
+      .classed({"red": false, "blue": true});
+      redStates.splice($.inArray(d.properties.name, redStates),1);
+      redEV -= d.ev;
+      blueStates.push(d.properties.name);
+      blueEV += d.ev;
+    };
+    $("#dems").text(blueEV);
+    $("#reps").text(redEV);
+    $("#unassigned").text(noEV);
+  };
