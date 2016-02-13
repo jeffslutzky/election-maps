@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.container {
+  font-family: sans-serif;
+}
+
+#states {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
 .neutral {
   fill: gray;
 }
@@ -15,7 +24,7 @@
 }
 
 .ev {
-  color: red;
+  font-family: sans-serif;
 }
 
 #dems {
@@ -23,5 +32,9 @@
 }
 
 #reps {
+  display: inline;
+}
+
+#unassigned {
   display: inline;
 }

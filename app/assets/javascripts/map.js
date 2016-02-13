@@ -22,13 +22,14 @@ $(function() {
         .append("path")
         .attr("d", path)
         .classed("neutral", true)
+        .attr("id", "states")
         .on("click", click);
     svg.selectAll("text")
         .data(json.features)
         .enter()
         .append("text")
         .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-        .attr("dy", ".35em")
+        // .attr("dy", "-.0em")
         .attr("dx", "-.3em")
         .attr("class", "ev")
         .text(function(d) { return d.ev; });
@@ -38,6 +39,7 @@ $(function() {
   var redStates = [];
   var blueEV = 0;
   var redEV = 0;
+  var noEV = 538;
 
   function click(d) {
     if (this.classList == "neutral") {
@@ -45,6 +47,7 @@ $(function() {
           .classed({"neutral": false, "blue": true});
       blueStates.push(d.properties.name);
       blueEV += d.ev;
+      noEV -= d.ev;
     } else if (this.classList == "blue") {
       d3.select(this)
           .classed({"blue": false, "red": true});
@@ -57,9 +60,11 @@ $(function() {
           .classed({"red": false, "neutral": true});
       redStates.splice($.inArray(d.properties.name, redStates),1);
       redEV -= d.ev;
+      noEV += d.ev;
     };
     $("#dems").text(blueEV);
     $("#reps").text(redEV);
+    $("#unassigned").text(noEV);
   };
 
 })
