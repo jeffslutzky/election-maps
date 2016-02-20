@@ -3,6 +3,12 @@ $(function() {
   var w = 1300;
   var h = 700;
 
+  var blueStates = [];
+  var redStates = [];
+  var blueEV = 0;
+  var redEV = 0;
+  var noEV = 538;
+
   var projection = d3.geo.albersUsa()
       .translate([w/2, h/2])
       .scale([1500]);
@@ -30,17 +36,11 @@ $(function() {
         .enter()
         .append("text")
         .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-        // .attr("dy", "-.0em")
+        .attr("dy", ".5em")
         .attr("dx", "-.3em")
         .attr("class", "ev")
         .text(function(d) { return d.ev; });
   });
-
-  var blueStates = [];
-  var redStates = [];
-  var blueEV = 0;
-  var redEV = 0;
-  var noEV = 538;
 
   function click(d) {
     if (this.classList == "neutral") {
@@ -67,7 +67,6 @@ $(function() {
     $("#reps").text(redEV);
     $("#unassigned").text(noEV);
   };
-})
 
   function rightClick(d) {
     if (this.classList == "neutral") {
@@ -94,3 +93,5 @@ $(function() {
     $("#reps").text(redEV);
     $("#unassigned").text(noEV);
   };
+
+})
