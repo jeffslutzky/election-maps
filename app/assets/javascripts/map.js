@@ -21,6 +21,15 @@ $(function() {
       .attr("width", w)
       .attr("height", h);
 
+  var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([10, 0])
+      .html(function(d){
+        return d.properties.name + ": " + d.ev;
+      });
+
+  svg.call(tip);
+
   d3.json("us-states.json", function(json) {
     svg.selectAll("path")
         .data(json.features)
@@ -30,14 +39,22 @@ $(function() {
         .classed("neutral", true)
         .attr("id", "states")
         .on("click", click)
-        .on("contextmenu", rightClick);
+        .on("contextmenu", rightClick)
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide);
     svg.selectAll("text")
         .data(json.features)
         .enter()
         .append("text")
         .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
         .attr("dy", ".5em")
-        .attr("dx", "-.3em")
+        .attr("dx", function (d) {
+          if (d.abbr === "FL") { return ".7em" }
+          else if (d.abbr === "LA") { return "-1em" }
+          else if (d.abbr === "CA") { return "-1em" }
+          else if (d.abbr === "MN") { return "-.7em" }
+          else {return "-.3em"}
+        })
         .attr("class", "ev")
         .text(function(d) { return d.ev; });
   });
