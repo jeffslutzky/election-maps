@@ -6,9 +6,21 @@
   font-family: sans-serif;
 }
 
-// .small-states {
-//   float: right;
-// }
+.small-states {
+  position: absolute;
+  left: 1150px;
+  top: 475px;
+}
+
+.small-states p {
+  margin: 5px;
+  padding: 5px;
+  line-height: 30px;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  background-color: gray;
+}
 
 #states {
   stroke: #fff;
