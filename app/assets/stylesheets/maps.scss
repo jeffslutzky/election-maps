@@ -2,9 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+// .container {
+//   width: 100%;
+// }
+
 .list-group {
   width: 200px;
   display:inline-block;
+}
+
+svg {
+  display: block;
+  margin: auto;
 }
 
 h1 {
@@ -17,8 +27,8 @@ h1 {
 
 .small-states {
   position: absolute;
-  left: 1275px;
-  top: 625px;
+  left: 1225px;
+  top: 600px;
 }
 
 .small-states p {
