@@ -9,7 +9,7 @@
 
 
 .list-group {
-  width: 200px;
+  width: 260px;
   display:inline-block;
   font-size: 18px;
   line-height: 20px;
@@ -19,13 +19,18 @@ body .list-group-item.active {
   background-color: #000000;
 }
 
+body .list-group-item.active:hover {
+  background-color: #000000;
+}
+
+body .btn {
+  padding: 5px 7px 2px;
+  margin-left: 10px;
+}
+
 svg {
   display: block;
   margin: auto;
-}
-
-h1 {
-  text-align: center;
 }
 
 .headers {

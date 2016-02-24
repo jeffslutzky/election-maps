@@ -126,4 +126,15 @@ $(function() {
     };
   }
 
+  $(".reset").on("click", function() {
+    d3.selectAll("path")
+        .classed({"neutral": true, "red": false, "blue": false});
+    blueEV = 0;
+    redEV = 0;
+    noEV = 538;
+    $("#dems").text(blueEV);
+    $("#reps").text(redEV);
+    $("#unassigned").text(noEV);
+  });
+
 })
