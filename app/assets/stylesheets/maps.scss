@@ -7,9 +7,16 @@
 //   width: 100%;
 // }
 
+
 .list-group {
   width: 200px;
   display:inline-block;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+body .list-group-item.active {
+  background-color: #000000;
 }
 
 svg {
@@ -67,8 +74,16 @@ h1 {
   display: inline;
 }
 
+.dem-tally {
+  color: blue;
+}
+
 #reps {
   display: inline;
+}
+
+.rep-tally {
+  color: red;
 }
 
 #unassigned {
@@ -82,4 +97,14 @@ h1 {
   background: rgba(0, 0, 0, 0.8);
   color: #fff;
   border-radius: 8px;
+}
+
+.winner {
+  font-weight: bold;
+  display: inline;
+}
+
+img {
+  width: 20px;
+  padding-bottom: 5px;
 }
