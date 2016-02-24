@@ -2,8 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.container {
-  font-family: sans-serif;
+.list-group {
+  width: 200px;
+  display:inline-block;
 }
 
 h1 {
@@ -14,14 +15,10 @@ h1 {
   text-align: center;
 }
 
-.votes {
-  // text-align: justify;
-}
-
 .small-states {
   position: absolute;
-  left: 1150px;
-  top: 475px;
+  left: 1275px;
+  top: 625px;
 }
 
 .small-states p {
