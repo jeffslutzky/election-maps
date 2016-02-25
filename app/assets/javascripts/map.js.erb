@@ -25,7 +25,7 @@ $(function() {
       .attr("class", "d3-tip")
       .offset(function (d) {
         if (d.abbr === "DC") {
-          return [0,10]
+          return [20,100]
         } else { return [10, 0] }
       })
       .html(function(d){

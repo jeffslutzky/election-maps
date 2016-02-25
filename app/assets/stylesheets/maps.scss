@@ -31,25 +31,9 @@ svg {
   text-align: center;
 }
 
-.small-states {
-  position: absolute;
-  left: 1225px;
-  top: 600px;
-}
-
-.small-states p {
-  margin: 5px;
-  padding: 3px;
-  line-height: 30px;
-  height: 30px;
-  width: 30px;
-  text-align: center;
-  background-color: gray;
-}
-
 #states {
   stroke: #fff;
-  stroke-width: 1.5px;
+  stroke-width: 0.5px;
 }
 
 .neutral {
