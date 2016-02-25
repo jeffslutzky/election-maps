@@ -57,10 +57,12 @@ $(function() {
         })
         .attr("class", "ev")
         .text(function(d) { return d.ev; });
+        debugger;
   });
 
   function click(d) {
     if (this.classList == "neutral") {
+      debugger;
       d3.select(this)
           .classed({"neutral": false, "blue": true});
       blueStates.push(d.properties.name);
@@ -135,6 +137,8 @@ $(function() {
     $("#dems").text(blueEV);
     $("#reps").text(redEV);
     $("#unassigned").text(noEV);
+    $(".dem-tally").children(".winner").remove();
+    $(".rep-tally").children(".winner").remove();
   });
 
 })
