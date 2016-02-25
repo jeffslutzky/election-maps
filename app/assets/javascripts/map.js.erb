@@ -23,7 +23,11 @@ $(function() {
 
   var tip = d3.tip()
       .attr("class", "d3-tip")
-      .offset([10, 0])
+      .offset(function (d) {
+        if (d.abbr === "DC") {
+          return [0,10]
+        } else { return [10, 0] }
+      })
       .html(function(d){
         return d.properties.name + ": " + d.ev;
       });
@@ -47,22 +51,26 @@ $(function() {
         .enter()
         .append("text")
         .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-        .attr("dy", ".5em")
+        .attr("dy", function (d) {
+          if (d.abbr === "DC") { return "1em" }
+          else if (d.abbr === "MI") { return "1.5em" }
+          else if (d.abbr === "MA") { return "0.1em" }
+          else { return ".5em"}
+        })
         .attr("dx", function (d) {
           if (d.abbr === "FL") { return ".7em" }
           else if (d.abbr === "LA") { return "-1em" }
           else if (d.abbr === "CA") { return "-1em" }
           else if (d.abbr === "MN") { return "-.7em" }
+          else if (d.abbr === "DC") { return "-1.1em" }
           else {return "-.3em"}
         })
         .attr("class", "ev")
         .text(function(d) { return d.ev; });
-        debugger;
   });
 
   function click(d) {
     if (this.classList == "neutral") {
-      debugger;
       d3.select(this)
           .classed({"neutral": false, "blue": true});
       blueStates.push(d.properties.name);
@@ -139,6 +147,19 @@ $(function() {
     $("#unassigned").text(noEV);
     $(".dem-tally").children(".winner").remove();
     $(".rep-tally").children(".winner").remove();
+  });
+
+  $(".small-states").on("click", function() {
+    if ($(this).hasClass("neutral")) {
+      $(this).removeClass("neutral");
+      $(this).addClass("blue");
+    } else if ($(this).hasClass("blue")) {
+        $(this).removeClass("blue");
+        $(this).addClass("red");
+    } else if ($(this).hasClass("red")) {
+        $(this).removeClass("red");
+        $(this).addClass("neutral");
+    }
   });
 
 })
