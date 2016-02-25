@@ -55,14 +55,16 @@ $(function() {
           if (d.abbr === "DC") { return "1em" }
           else if (d.abbr === "MI") { return "1.5em" }
           else if (d.abbr === "MA") { return "0.1em" }
+          else if (d.abbr === "MD") { return "-0.2em" }
           else { return ".5em"}
         })
         .attr("dx", function (d) {
-          if (d.abbr === "FL") { return ".7em" }
+          if (d.abbr === "FL") { return ".9em" }
           else if (d.abbr === "LA") { return "-1em" }
           else if (d.abbr === "CA") { return "-1em" }
           else if (d.abbr === "MN") { return "-.7em" }
           else if (d.abbr === "DC") { return "-1.1em" }
+          else if (d.abbr === "MD") { return "-1em" }
           else {return "-.3em"}
         })
         .attr("class", "ev")
