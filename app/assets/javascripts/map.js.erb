@@ -125,13 +125,15 @@ $(function() {
 
   function winner() {
     if (blueEV >= 270) {
-      $(".dem-tally").prepend('<div class="winner"><%= image_tag("check.png") %></div>');
-    } else {
+      if (!$(".winner").length) {
+      $(".dem-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
+    }} else {
       $(".dem-tally").children(".winner").remove();
     };
     if (redEV >= 270) {
-      $(".rep-tally").prepend('<div class="winner"><%= image_tag("check.png") %></div>');
-    } else {
+      if (!$(".winner").length) {
+      $(".rep-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
+    }} else {
       $(".rep-tally").children(".winner").remove();
     };
   }
