@@ -127,13 +127,13 @@ $(function() {
 
   function winner() {
     if (blueEV >= 270) {
-      if (!$(".winner").length) {
+      if (!$(".dem-tally").children(".winner").length) {
       $(".dem-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
     }} else {
       $(".dem-tally").children(".winner").remove();
     };
     if (redEV >= 270) {
-      if (!$(".winner").length) {
+      if (!$(".rep-tally").children(".winner").length) {
       $(".rep-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
     }} else {
       $(".rep-tally").children(".winner").remove();
