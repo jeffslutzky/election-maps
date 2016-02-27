@@ -1,6 +1,6 @@
 $(function() {
 
-  // prevent number selection/highlighting on double-click
+  // prevent number highlighting on double-click
   $(".map").mousedown(function(e){ e.preventDefault(); });
 
   var w = 1300;
@@ -85,7 +85,15 @@ $(function() {
           else {return "-0.3em"}
         })
         .attr("class", "ev")
+        .attr("style", function (d) {
+            if (d.abbr === "RI" || d.abbr === "DE") {
+              return "fill: black"
+            } else {
+              return "fill: white"
+            }
+        })
         .text(function(d) { return d.ev; });
+        // debugger;
   });
 
   function click(d) {
