@@ -93,7 +93,6 @@ $(function() {
             }
         })
         .text(function(d) { return d.ev; });
-        // debugger;
   });
 
   function click(d) {
@@ -176,19 +175,6 @@ $(function() {
     $("#unassigned").text(noEV);
     $(".dem-tally").children(".winner").remove();
     $(".rep-tally").children(".winner").remove();
-  });
-
-  $(".small-states").on("click", function() {
-    if ($(this).hasClass("neutral")) {
-      $(this).removeClass("neutral");
-      $(this).addClass("blue");
-    } else if ($(this).hasClass("blue")) {
-        $(this).removeClass("blue");
-        $(this).addClass("red");
-    } else if ($(this).hasClass("red")) {
-        $(this).removeClass("red");
-        $(this).addClass("neutral");
-    }
   });
 
 })
