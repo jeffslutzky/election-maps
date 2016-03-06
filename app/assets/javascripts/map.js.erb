@@ -118,10 +118,7 @@ $(function() {
       redEV -= d.ev;
       noEV += d.ev;
     };
-    $("#dems").text(blueEV);
-    $("#reps").text(redEV);
-    $("#unassigned").text(noEV);
-    winner();
+    updateTally();
   };
 
   function rightClick(d) {
@@ -145,13 +142,13 @@ $(function() {
       blueStates.push(d.properties.name);
       blueEV += d.ev;
     };
+    updateTally();
+  };
+
+  function updateTally() {
     $("#dems").text(blueEV);
     $("#reps").text(redEV);
     $("#unassigned").text(noEV);
-    winner();
-  };
-
-  function winner() {
     if (blueEV >= 270) {
       if (!$(".dem-tally").children(".winner").length) {
       $(".dem-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
