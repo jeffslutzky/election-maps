@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160704200326) do
+ActiveRecord::Schema.define(version: 20160704233416) do
+
+  create_table "maps", force: :cascade do |t|
+    t.string "blue"
+    t.string "red"
+    t.string "gray"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
