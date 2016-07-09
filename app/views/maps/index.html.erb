@@ -39,6 +39,10 @@
 
         <% end %>
 
+        <%= form_for Map.new, url: user_maps_path(current_user) do |f| %>
+          <%= f.submit "Save current map" %>
+        <% end %>
+
         <div class="btn btn-default">Save current map</div>
       </div>
     </div>
