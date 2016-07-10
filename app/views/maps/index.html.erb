@@ -39,7 +39,9 @@
 
         <% end %>
 
-        <%= form_for Map.new, url: user_maps_path(current_user) do |f| %>
+        <%= form_for Map.new, url: user_maps_path(@user) do |f| %>
+          <%= f.label "Name" %><br />
+          <%= f.text_field :name %><br />
           <%= f.submit "Save current map" %>
         <% end %>
 
