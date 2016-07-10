@@ -167,7 +167,15 @@ $(function() {
   function updateDB() {
     console.log(blueStates + " " + redStates);
     $.ajax({
-      
+      data: {blueStates, redStates},
+      type: "POST",
+      url: Routes.user_maps_path(user_id),
+      success: function() {
+        debugger;
+      },
+      error: function() {
+        console.log("Error")
+      }
     });
   };
 
