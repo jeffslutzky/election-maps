@@ -42,10 +42,11 @@
         <%= form_for Map.new, url: user_maps_path(@user) do |f| %>
           <%= f.label "Name" %><br />
           <%= f.text_field :name %><br />
-          <%= f.submit "Save current map" %>
+          <%= f.hidden_field :blue, value: Map.get_blue %>
+          <%= f.hidden_field :red, value: Map.get_red %>
+          <%= f.submit "Save current map", class:"btn btn-default" %>
         <% end %>
 
-        <div class="btn btn-default">Save current map</div>
       </div>
     </div>
 

@@ -161,7 +161,15 @@ $(function() {
     }} else {
       $(".rep-tally").children(".winner").remove();
     };
-  }
+    updateDB();
+  };
+
+  function updateDB() {
+    console.log(blueStates + " " + redStates);
+    $.ajax({
+      
+    });
+  };
 
   $(".reset").on("click", function() {
     d3.selectAll("path")

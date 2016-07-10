@@ -6,12 +6,10 @@ class MapsController < ApplicationController
 
   def create
     @map = Map.create(map_params)
-    binding.pry
     @map.user = current_user
     binding.pry
     # save the colors of the states
     @map.save
-    binding.pry
   end
 
 
