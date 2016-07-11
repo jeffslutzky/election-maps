@@ -165,11 +165,10 @@ $(function() {
   };
 
   function updateDB() {
-    console.log(blueStates + " " + redStates);
     $.ajax({
-      data: {blueStates, redStates},
+      data: {blue: blueStates, red: redStates},
       type: "POST",
-      url: Routes.user_maps_path(user_id),
+      url: $("form").attr("action"),
       success: function() {
         debugger;
       },
