@@ -161,22 +161,28 @@ $(function() {
     }} else {
       $(".rep-tally").children(".winner").remove();
     };
-    updateDB();
   };
 
-  function updateDB() {
+  $("form").on("submit", function(event) {
+    event.preventDefault();
+    console.log(event);
+    var url = $("form").attr("action");
+    var data = {blueEV: blueEV, redEV: redEV, blueStates: blueStates, redStates: redStates};
+    console.log(data);
     $.ajax({
-      data: {blue: blueStates, red: redStates},
-      type: "POST",
-      url: $("form").attr("action"),
+      url: url,
+      type: "post",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
       success: function() {
-        debugger;
+        console.log("Success");
       },
       error: function() {
-        console.log("Error")
+        console.log("Error");
       }
     });
-  };
+  });
 
   $(".reset").on("click", function() {
     d3.selectAll("path")

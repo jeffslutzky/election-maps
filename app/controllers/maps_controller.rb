@@ -7,7 +7,9 @@ class MapsController < ApplicationController
   def create
     @map = Map.create(map_params)
     @map.user = current_user
-    render json: {user_id: current_user.id}
+    respond_to do |format|
+      format.js { }
+    end
     # save the colors of the states
     @map.save
   end
