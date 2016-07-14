@@ -163,25 +163,8 @@ $(function() {
     };
   };
 
-  $("form").on("submit", function(event) {
-    event.preventDefault();
-    console.log(event);
-    var url = $("form").attr("action");
-    var data = {blueEV: blueEV, redEV: redEV, blueStates: blueStates, redStates: redStates};
-    console.log(data);
-    $.ajax({
-      url: url,
-      type: "post",
-      data: JSON.stringify(data),
-      contentType: "application/json; charset=utf-8",
-      dataType: "json",
-      success: function() {
-        console.log("Success");
-      },
-      error: function() {
-        console.log("Error");
-      }
-    });
+  $("form").on("ajax:success", function(event, data){
+    
   });
 
   $(".reset").on("click", function() {

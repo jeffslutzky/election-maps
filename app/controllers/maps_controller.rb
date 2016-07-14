@@ -10,6 +10,7 @@ class MapsController < ApplicationController
     respond_to do |format|
       format.js { }
     end
+    binding.pry
     # save the colors of the states
     @map.save
   end
