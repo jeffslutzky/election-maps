@@ -97,7 +97,7 @@ $(function() {
         .text(function(d) { return d.ev; });
   });
 
-  function click(d) {
+  var click = function(d) {
     if (this.classList == "neutral") {
       d3.select(this)
           .classed({"neutral": false, "blue": true});
@@ -121,7 +121,7 @@ $(function() {
     updateTally();
   };
 
-  function rightClick(d) {
+  var rightClick = function(d) {
     if (this.classList == "neutral") {
       d3.select(this)
       .classed({"neutral": false, "red": true});
@@ -145,7 +145,15 @@ $(function() {
     updateTally();
   };
 
-  function updateTally() {
+  var updateEV = function() {
+    $("#dems").text(blueEV);
+    $("#map_blue").val(blueEV);
+    $("#reps").text(redEV);
+    $("#map_red").val(redEV);
+    $("#unassigned").text(noEV);
+  };
+
+  var updateTally = function() {
     updateEV();
     if (blueEV >= 270) {
       if (!$(".dem-tally").children(".winner").length) {
@@ -161,23 +169,17 @@ $(function() {
     };
   };
 
-  $(".reset").on("click", function() {
+  var reset = function() {
     d3.selectAll("path")
-        .classed({"neutral": true, "red": false, "blue": false});
+    .classed({"neutral": true, "red": false, "blue": false});
     blueEV = 0;
     redEV = 0;
     noEV = 538;
     updateEV();
     $(".dem-tally").children(".winner").remove();
     $(".rep-tally").children(".winner").remove();
-  });
-
-  function updateEV() {
-    $("#dems").text(blueEV);
-    $("#map_blue").val(blueEV);
-    $("#reps").text(redEV);
-    $("#map_red").val(redEV);
-    $("#unassigned").text(noEV);
   };
+
+  $(".reset").on("click", reset);
 
 })
