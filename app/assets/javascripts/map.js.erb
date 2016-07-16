@@ -146,9 +146,7 @@ $(function() {
   };
 
   function updateTally() {
-    $("#dems").text(blueEV);
-    $("#reps").text(redEV);
-    $("#unassigned").text(noEV);
+    updateEV();
     if (blueEV >= 270) {
       if (!$(".dem-tally").children(".winner").length) {
       $(".dem-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
@@ -163,21 +161,23 @@ $(function() {
     };
   };
 
-  $("form").on("ajax:success", function(event, data){
-    
-  });
-
   $(".reset").on("click", function() {
     d3.selectAll("path")
         .classed({"neutral": true, "red": false, "blue": false});
     blueEV = 0;
     redEV = 0;
     noEV = 538;
-    $("#dems").text(blueEV);
-    $("#reps").text(redEV);
-    $("#unassigned").text(noEV);
+    updateEV();
     $(".dem-tally").children(".winner").remove();
     $(".rep-tally").children(".winner").remove();
   });
+
+  function updateEV() {
+    $("#dems").text(blueEV);
+    $("#map_blue").val(blueEV);
+    $("#reps").text(redEV);
+    $("#map_red").val(redEV);
+    $("#unassigned").text(noEV);
+  };
 
 })
