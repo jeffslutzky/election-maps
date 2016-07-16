@@ -10,7 +10,7 @@ $(function() {
   var redStates = [];
   var blueEV = 0;
   var redEV = 0;
-  var noEV = 538;
+  var unassignedEV = 538;
 
   var projection = d3.geo.albersUsa()
       .translate([w/2, h/2])
@@ -103,7 +103,7 @@ $(function() {
           .classed({"neutral": false, "blue": true});
       blueStates.push(d.properties.name);
       blueEV += d.ev;
-      noEV -= d.ev;
+      unassignedEV -= d.ev;
     } else if (this.classList == "blue") {
       d3.select(this)
           .classed({"blue": false, "red": true});
@@ -116,9 +116,9 @@ $(function() {
           .classed({"red": false, "neutral": true});
       redStates.splice($.inArray(d.properties.name, redStates),1);
       redEV -= d.ev;
-      noEV += d.ev;
+      unassignedEV += d.ev;
     };
-    updateTally();
+    checkForWinner();
   };
 
   var rightClick = function(d) {
@@ -127,13 +127,13 @@ $(function() {
       .classed({"neutral": false, "red": true});
       redStates.push(d.properties.name);
       redEV += d.ev;
-      noEV -= d.ev;
+      unassignedEV -= d.ev;
     } else if (this.classList == "blue") {
       d3.select(this)
       .classed({"blue": false, "neutral": true});
       blueStates.splice($.inArray(d.properties.name, blueStates),1);
       blueEV -= d.ev;
-      noEV += d.ev;
+      unassignedEV += d.ev;
     } else {
       d3.select(this)
       .classed({"red": false, "blue": true});
@@ -142,19 +142,23 @@ $(function() {
       blueStates.push(d.properties.name);
       blueEV += d.ev;
     };
-    updateTally();
-  };
-
-  var updateEV = function() {
-    $("#dems").text(blueEV);
-    $("#map_blue").val(blueEV);
-    $("#reps").text(redEV);
-    $("#map_red").val(redEV);
-    $("#unassigned").text(noEV);
+    checkForWinner();
   };
 
   var updateTally = function() {
-    updateEV();
+    $("#dems").text(blueEV);
+    $("#map_blue").val(blueEV);
+    $("#map_blue_states").val(blueStates);
+
+    $("#reps").text(redEV);
+    $("#map_red").val(redEV);
+    $("#map_red_states").val(redStates);
+
+    $("#unassigned").text(unassignedEV);
+  };
+
+  var checkForWinner = function() {
+    updateTally();
     if (blueEV >= 270) {
       if (!$(".dem-tally").children(".winner").length) {
       $(".dem-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
@@ -174,8 +178,8 @@ $(function() {
     .classed({"neutral": true, "red": false, "blue": false});
     blueEV = 0;
     redEV = 0;
-    noEV = 538;
-    updateEV();
+    unassignedEV = 538;
+    updateTally();
     $(".dem-tally").children(".winner").remove();
     $(".rep-tally").children(".winner").remove();
   };

@@ -1,0 +1,62 @@
+<%= render 'layouts/header' %>
+
+<div class="container-fluid">
+
+  <div class="headers">
+    <p>
+      <h1>2016 Electoral College Vote Calculator</h1>
+      <h4>by <%= link_to "Jeff Slutzky", "http://jeffslutzky.com" %></h4>
+
+      Left-click: blue > red > unassigned<br />
+      Right-click: red > blue > unassigned<br />
+    </p>
+
+    <div class="list-group">
+      <div class="list-group-item active">
+        Electoral vote tally <div class="btn btn-default reset">Reset</div>
+      </div>
+      <div class="list-group-item">
+        Unassigned: <div id="unassigned">538</div><br />
+      </div>
+      <div class="list-group-item dem-tally">
+        Democrats: <div id="dems">0</div><br />
+      </div>
+      <div class="list-group-item rep-tally">
+        Republicans: <div id="reps">0</div><br />
+      </div>
+      <div class="list-group-item">
+        <% if user_signed_in? %>
+          <%= link_to "Log out", logout_path, class: "btn btn-default navbar-btn" %>
+
+        <% else %>
+
+          <%= form_tag(login_path, method: 'post') do %>
+            <%= label_tag :name %>
+            <%= text_field_tag :name %>
+            <%= label_tag :password %>
+            <%= password_field_tag :password %>
+            <%= submit_tag "Log in", class: "btn btn-default navbar-btn" %> or
+            <%= link_to "Sign up", signup_path, class: "btn btn-default navbar-btn" %>
+          <% end %>
+
+        <% end %>
+
+        <%= form_for Map.new, url: user_maps_path(@user), remote: true do |f| %>
+          <%= f.label "Name" %><br />
+          <%= f.text_field :name %><br />
+          <%= f.hidden_field :blue %>
+          <%= f.hidden_field :red %>
+          <%= f.hidden_field :blue_states %>
+          <%= f.hidden_field :red_states %>
+          <%= f.submit "Save current map", class:"btn btn-default" %>
+        <% end %>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="map" oncontextmenu="return false;">
+  </div>
+
+</div>
