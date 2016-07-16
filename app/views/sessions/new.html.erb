@@ -28,6 +28,16 @@
         <% if user_signed_in? %>
           <%= link_to "Log out", logout_path, class: "btn btn-default navbar-btn" %>
 
+          <%= form_for Map.new, url: user_maps_path(@user) do |f| %>
+          <%= f.label "Name" %><br />
+          <%= f.text_field :name %><br />
+          <%= f.hidden_field :blue %>
+          <%= f.hidden_field :red %>
+          <%= f.hidden_field :blue_states %>
+          <%= f.hidden_field :red_states %>
+          <%= f.submit "Save current map", class:"btn btn-default" %>
+          <% end %>
+
         <% else %>
 
           <%= form_tag(login_path, method: 'post') do %>
@@ -41,15 +51,6 @@
 
         <% end %>
 
-        <%= form_for Map.new, url: user_maps_path(@user), remote: true do |f| %>
-          <%= f.label "Name" %><br />
-          <%= f.text_field :name %><br />
-          <%= f.hidden_field :blue %>
-          <%= f.hidden_field :red %>
-          <%= f.hidden_field :blue_states %>
-          <%= f.hidden_field :red_states %>
-          <%= f.submit "Save current map", class:"btn btn-default" %>
-        <% end %>
 
       </div>
     </div>

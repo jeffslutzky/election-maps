@@ -19,7 +19,6 @@ gem 'autoprefixer-rails'
 gem 'bootswatch-rails'
 gem 'bcrypt'
 gem 'pry-byebug'
-gem 'js-routes'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

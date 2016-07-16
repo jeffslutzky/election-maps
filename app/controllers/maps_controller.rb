@@ -5,18 +5,17 @@ class MapsController < ApplicationController
   end
 
   def create
-    @map = Map.create(map_params)
-    @map.user = current_user
-    binding.pry
-    # save the colors of the states
-    @map.save
+    map = Map.create(map_params)
+    map.user = current_user
+    map.save
+    redirect_to user_path(current_user.id)
   end
 
 
   private
 
   def map_params
-    params.require(:map).permit(:user_id, :name, :blue, :red, :gray)
+    params.require(:map).permit(:user_id, :name, :blue, :red, :blue_states, :red_states, :gray)
   end
 
 end

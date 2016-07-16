@@ -155,6 +155,13 @@ $(function() {
     $("#map_red_states").val(redStates);
 
     $("#unassigned").text(unassignedEV);
+
+    json = {};
+    json["blue"] = blueEV;
+    json["red"] = redEV;
+    json["blueStates"] = blueStates;
+    json["redStates"] = redStates;
+    console.log(JSON.stringify(json));
   };
 
   var checkForWinner = function() {
