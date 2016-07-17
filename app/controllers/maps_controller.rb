@@ -8,7 +8,6 @@ class MapsController < ApplicationController
     map = Map.create(map_params)
     map.user = current_user
     map.save
-    binding.pry
     redirect_to user_path(current_user.id)
   end
 
