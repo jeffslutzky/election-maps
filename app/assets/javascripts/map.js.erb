@@ -147,21 +147,22 @@ $(function() {
 
   var updateTally = function() {
     $("#dems").text(blueEV);
-    $("#map_blue").val(blueEV);
-    $("#map_blue_states").val(blueStates);
+    // $("#map_blue").val(blueEV);
+    // $("#map_blue_states").val(blueStates);
 
     $("#reps").text(redEV);
-    $("#map_red").val(redEV);
-    $("#map_red_states").val(redStates);
+    // $("#map_red").val(redEV);
+    // $("#map_red_states").val(redStates);
 
     $("#unassigned").text(unassignedEV);
 
-    json = {};
-    json["blue"] = blueEV;
-    json["red"] = redEV;
-    json["blueStates"] = blueStates;
-    json["redStates"] = redStates;
-    console.log(JSON.stringify(json));
+    mapData = {};
+    mapData["blue"] = blueEV;
+    mapData["red"] = redEV;
+    mapData["blueStates"] = blueStates;
+    mapData["redStates"] = redStates;
+    mapData = JSON.stringify(mapData);
+    $("#map_data").val(mapData);
   };
 
   var checkForWinner = function() {

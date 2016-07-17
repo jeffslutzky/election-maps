@@ -8,6 +8,7 @@ class MapsController < ApplicationController
     map = Map.create(map_params)
     map.user = current_user
     map.save
+    binding.pry
     redirect_to user_path(current_user.id)
   end
 
@@ -15,7 +16,7 @@ class MapsController < ApplicationController
   private
 
   def map_params
-    params.require(:map).permit(:user_id, :name, :blue, :red, :blue_states, :red_states, :gray)
+    params.require(:map).permit(:user_id, :name, :blue, :red, :blue_states, :red_states, :gray, :data)
   end
 
 end

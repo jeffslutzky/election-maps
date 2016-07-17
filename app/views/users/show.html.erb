@@ -4,9 +4,11 @@
 <div>
 <% @user.maps.each do |map| %>
   <h4><%= map.name %></h4>
-  <h5>Blue EV: <%= map.blue %></h5>
-  <h5>states: <%= map.blue_states %></h5>
-  <h5>Red EV: <%= map.red %></h5>
-  <h5>states: <%= map.red_states %></h5>
+  <% map_data = JSON.parse(map.data) %>
+  <h5>Blue EV: <%= map_data["blue"] %></h5>
+  <h5>states: <%= map_data["blueStates"] %></h5>
+  <h5>Red EV: <%= map_data["red"] %></h5>
+  <h5>states: <%= map_data["redStates"] %></h5>
+  <h5>mapData: <%= map_data %></h5>
 <% end %>
 </div>
