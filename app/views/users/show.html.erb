@@ -9,6 +9,6 @@
   <h5>states: <%= map_data["blueStates"] %></h5>
   <h5>Red EV: <%= map_data["red"] %></h5>
   <h5>states: <%= map_data["redStates"] %></h5>
-  <h5>mapData: <%= map_data %></h5>
+  <h5><%= link_to "see map", user_map_path(@user.id, map.id)  %>
 <% end %>
 </div>

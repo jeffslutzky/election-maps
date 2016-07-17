@@ -1,0 +1,7 @@
+<h3>Here is the saved map you selected.</h3>
+<h4><%= @map.name %></h4>
+<% map_data = JSON.parse(@map.data) %>
+<h5>Blue EV: <%= map_data["blue"] %></h5>
+<h5>states: <%= map_data["blueStates"] %></h5>
+<h5>Red EV: <%= map_data["red"] %></h5>
+<h5>states: <%= map_data["redStates"] %></h5>
