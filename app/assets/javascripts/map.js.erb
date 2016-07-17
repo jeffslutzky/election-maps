@@ -59,17 +59,18 @@ $(function() {
         .append("text")
         .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
         .attr("dy", function (d) {
-          if (d.abbr === "DC") { return "0.8em" }
-          else if (d.abbr === "MI") { return "2em" }
-          else if (d.abbr === "MA") { return "0.1em" }
-          else if (d.abbr === "MD") { return "-0.2em" }
-          else if (d.abbr === "RI") { return "1.2em" }
-          else if (d.abbr === "CT") { return "0.3em" }
-          else if (d.abbr === "NJ") { return "0.3em" }
-          else if (d.abbr === "DE") { return "0.8em" }
-          else if (d.abbr === "VA") { return "0em" }
-          else if (d.abbr === "AK") { return "-0.2em" }
-          else { return "0.5em"}
+          return d.dy
+          // if (d.abbr === "DC") { return "0.8em" }
+          // else if (d.abbr === "MI") { return "2em" }
+          // else if (d.abbr === "MA") { return "0.1em" }
+          // else if (d.abbr === "MD") { return "-0.2em" }
+          // else if (d.abbr === "RI") { return "1.2em" }
+          // else if (d.abbr === "CT") { return "0.3em" }
+          // else if (d.abbr === "NJ") { return "0.3em" }
+          // else if (d.abbr === "DE") { return "0.8em" }
+          // else if (d.abbr === "VA") { return "0em" }
+          // else if (d.abbr === "AK") { return "-0.2em" }
+          // else { return d.dy || "0.5em"}
         })
         .attr("dx", function (d) {
           if (d.abbr === "FL") { return ".9em" }
@@ -147,13 +148,7 @@ $(function() {
 
   var updateTally = function() {
     $("#dems").text(blueEV);
-    // $("#map_blue").val(blueEV);
-    // $("#map_blue_states").val(blueStates);
-
     $("#reps").text(redEV);
-    // $("#map_red").val(redEV);
-    // $("#map_red_states").val(redStates);
-
     $("#unassigned").text(unassignedEV);
 
     mapData = {};
