@@ -52,6 +52,10 @@
 
   </div>
 
+  <%= javascript_tag do %>
+    window.userMapData = '<%= @data %>';
+  <% end %>
+
   <!-- prevent number highlighting on double-click -->
   <div class="map" oncontextmenu="return false;">
     <!-- D3 map appears here -->

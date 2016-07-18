@@ -166,4 +166,9 @@ var getMap = function() {
 
   $(".reset").on("click", reset);
 
+  var populateMap = function() {
+    var fixedUserMapData = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
+    var parsedUserMapData = JSON.parse(fixedUserMapData);
+  };
+
 }
