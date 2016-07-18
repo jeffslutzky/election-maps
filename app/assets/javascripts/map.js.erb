@@ -11,6 +11,7 @@ var getMap = function() {
   var blueEV = 0;
   var redEV = 0;
   var unassignedEV = 538;
+  var stateColor = "neutral";
 
   var projection = d3.geo.albersUsa()
       .translate([w/2, h/2])
@@ -47,7 +48,10 @@ var getMap = function() {
         .enter()
         .append("path")
         .attr("d", path)
-        .classed("neutral", true)
+        .attr("class", function() {
+
+          return stateColor;
+        })
         .attr("id", "states")
         .on("click", click)
         .on("contextmenu", rightClick)
@@ -74,31 +78,24 @@ var getMap = function() {
         })
         .text(function(d) { return d.ev; });
 
-    var populateMap = function() {
-      var userMapDataObject = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
-      userMapDataObject = JSON.parse(userMapDataObject);
+    var getStateColors = function() {
+      var userMapDataClean = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
+      var userMapDataObject = JSON.parse(userMapDataClean);
       var blueStateArray = userMapDataObject["blueStates"];
       var redStateArray = userMapDataObject["redStates"];
       $.each(json.features, function(i, attrs) {
         var stateName = attrs.properties.name;
         if ( blueStateArray.includes(stateName) ) {
-          attrs.color = "blue";
-          // if (this.classList == "neutral") {
-          //   d3.select(this)
-          //       .classed({"neutral": false, "blue": true});
+          stateColor = "blue";
         } else if ( redStateArray.includes(stateName) ) {
-          attrs.color = "red";
-          // if (this.classList == "neutral") {
-          //   d3.select(this)
-          //       .classed({"neutral": false, "blue": true});
+          stateColor = "red";
         }
       });
     };
 
     if (userMapData) {
-      populateMap();
+      getStateColors();
     };
-
 });
 
   var click = function(d) {
