@@ -75,6 +75,14 @@ var getMap = function() {
         .text(function(d) { return d.ev; });
   });
 
+  var populateMap = function() {
+    var userMapData = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
+    var userMapData = JSON.parse(userMapData);
+    var redStateArray = userMapData["redStates"];
+    var blueStateArray = userMapData["blueStates"];
+
+  };
+
   var click = function(d) {
     if (this.classList == "neutral") {
       d3.select(this)
@@ -165,10 +173,5 @@ var getMap = function() {
   };
 
   $(".reset").on("click", reset);
-
-  var populateMap = function() {
-    var fixedUserMapData = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
-    var parsedUserMapData = JSON.parse(fixedUserMapData);
-  };
 
 }
