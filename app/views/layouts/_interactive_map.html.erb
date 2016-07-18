@@ -14,13 +14,13 @@
         Electoral vote tally <div class="btn btn-default reset">Reset</div>
       </div>
       <div class="list-group-item">
-        Unassigned: <div id="unassigned">538</div><br />
+        Unassigned: <div id="unassigned"><%= @unassigned_EV %></div><br />
       </div>
       <div class="list-group-item dem-tally">
-        Democrats: <div id="dems">0</div><br />
+        Democrats: <div id="dems"><%= @blue_EV %></div><br />
       </div>
       <div class="list-group-item rep-tally">
-        Republicans: <div id="reps">0</div><br />
+        Republicans: <div id="reps"><%= @red_EV %></div><br />
       </div>
       <div class="list-group-item">
         <% if user_signed_in? %>

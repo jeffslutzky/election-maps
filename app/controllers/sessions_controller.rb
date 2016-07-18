@@ -2,6 +2,9 @@ class SessionsController < ApplicationController
 
   def new
     @user = current_user
+    @blue_EV = 0
+    @red_EV = 0
+    @unassigned_EV = 538
   end
 
   def create

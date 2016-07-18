@@ -15,6 +15,10 @@ class MapsController < ApplicationController
   def show
     @user = current_user
     @map = Map.find(params[:id])
+    @data = JSON.parse(@map.data)
+    @blue_EV = @data["blue"]
+    @red_EV = @data["red"]
+    @unassigned_EV = 538 - (@blue_EV + @red_EV)
   end
 
 
