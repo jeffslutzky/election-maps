@@ -42,13 +42,48 @@ var getMap = function() {
 
   svg.call(tip);
 
+  var userMapDataObject = function() {
+    if (userMapData) {
+      var userMapDataClean = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
+      return JSON.parse(userMapDataClean);
+    };
+  };
+
+  // var getColor = function() {
+  //   var blueStateArray = userMapDataObject["blueStates"];
+  //   var redStateArray = userMapDataObject["redStates"];
+  //   $.each(json.features, function(i, attrs) {
+  //     var stateName = attrs.properties.name;
+  //     if ( blueStateArray.includes(stateName) ) {
+  //       stateColor = "blue";
+  //     } else if ( redStateArray.includes(stateName) ) {
+  //       stateColor = "red";
+  //     }
+  //   });
+  // };
+
+  // if (userMapData) {
+  //   userMapDataObject();
+  // };
+
   d3.json("/us-states.json", function(json) {
     svg.selectAll("path")
         .data(json.features)
         .enter()
         .append("path")
         .attr("d", path)
-        .attr("class", function() {
+        .attr("class", function(d) {
+          var blueStateArray = userMapDataObject()["blueStates"];
+          var redStateArray = userMapDataObject()["redStates"];
+          var stateName = d.properties.name;
+          if ( blueStateArray.includes(stateName) ) {
+            stateColor = "blue";
+          } else if ( redStateArray.includes(stateName) ) {
+            stateColor = "red";
+          } else {
+            stateColor = "neutral";
+          };
+          stateColor = "neutral";
 
           return stateColor;
         })
@@ -77,25 +112,6 @@ var getMap = function() {
             }
         })
         .text(function(d) { return d.ev; });
-
-    var getStateColors = function() {
-      var userMapDataClean = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
-      var userMapDataObject = JSON.parse(userMapDataClean);
-      var blueStateArray = userMapDataObject["blueStates"];
-      var redStateArray = userMapDataObject["redStates"];
-      $.each(json.features, function(i, attrs) {
-        var stateName = attrs.properties.name;
-        if ( blueStateArray.includes(stateName) ) {
-          stateColor = "blue";
-        } else if ( redStateArray.includes(stateName) ) {
-          stateColor = "red";
-        }
-      });
-    };
-
-    if (userMapData) {
-      getStateColors();
-    };
 });
 
   var click = function(d) {
