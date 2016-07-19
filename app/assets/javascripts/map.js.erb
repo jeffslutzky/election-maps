@@ -129,30 +129,32 @@ var getMap = function() {
       redEV -= d.ev;
       unassignedEV += d.ev;
     };
+    updateTally();
     checkForWinner();
   };
 
   var rightClick = function(d) {
     if (this.classList == "neutral") {
       d3.select(this)
-      .classed({"neutral": false, "red": true});
+          .classed({"neutral": false, "red": true});
       redStates.push(d.properties.name);
       redEV += d.ev;
       unassignedEV -= d.ev;
     } else if (this.classList == "blue") {
       d3.select(this)
-      .classed({"blue": false, "neutral": true});
+          .classed({"blue": false, "neutral": true});
       blueStates.splice($.inArray(d.properties.name, blueStates),1);
       blueEV -= d.ev;
       unassignedEV += d.ev;
     } else {
       d3.select(this)
-      .classed({"red": false, "blue": true});
+          .classed({"red": false, "blue": true});
       redStates.splice($.inArray(d.properties.name, redStates),1);
       redEV -= d.ev;
       blueStates.push(d.properties.name);
       blueEV += d.ev;
     };
+    updateTally();
     checkForWinner();
   };
 
@@ -171,25 +173,29 @@ var getMap = function() {
   };
 
   var checkForWinner = function() {
-    updateTally();
     var winnerHTML = '<div class="winner"><%= image_tag("check.png") %> winner </div>';
+
     if (blueEV >= 270) {
       if (!$(".dem-tally").children(".winner").length) {
-      $(".dem-tally").prepend(winnerHTML);
-    }} else {
+        $(".dem-tally").prepend(winnerHTML);
+      }
+    } else {
       $(".dem-tally").children(".winner").remove();
     };
+
     if (redEV >= 270) {
       if (!$(".rep-tally").children(".winner").length) {
-      $(".rep-tally").prepend(winnerHTML);
-    }} else {
+        $(".rep-tally").prepend(winnerHTML);
+      }
+    } else {
       $(".rep-tally").children(".winner").remove();
     };
+
   };
 
   var reset = function() {
     d3.selectAll("path")
-    .classed({"neutral": true, "red": false, "blue": false});
+        .classed({"neutral": true, "red": false, "blue": false});
     blueEV = 0;
     redEV = 0;
     unassignedEV = 538;
