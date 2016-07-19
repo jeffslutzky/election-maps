@@ -16,13 +16,23 @@ var getMap = function() {
   var userMapDataObject = function() {
     if (userMapData) {
       var userMapDataClean = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
+      blueEV = userMapDataClean["blue"];
+      redEV = userMapDataClean["red"];
       return JSON.parse(userMapDataClean);
     };
   };
 
-  if (userMapData) {
-    blueEV = userMapDataObject()["blue"];
-    redEV = userMapDataObject()["red"];
+  var getStateColor = function(d) {
+    var blueStateArray = userMapDataObject()["blueStates"];
+    var redStateArray = userMapDataObject()["redStates"];
+    var stateName = d.properties.name;
+    if ( blueStateArray.includes(stateName) ) {
+      stateColor = "blue";
+    } else if ( redStateArray.includes(stateName) ) {
+      stateColor = "red";
+    } else {
+      stateColor = "neutral";
+    }
   };
 
   var projection = d3.geo.albersUsa()
@@ -62,16 +72,7 @@ var getMap = function() {
         .attr("d", path)
         .attr("class", function(d) {
           if (userMapData) {
-            var blueStateArray = userMapDataObject()["blueStates"];
-            var redStateArray = userMapDataObject()["redStates"];
-            var stateName = d.properties.name;
-            if ( blueStateArray.includes(stateName) ) {
-              stateColor = "blue";
-            } else if ( redStateArray.includes(stateName) ) {
-              stateColor = "red";
-            } else {
-              stateColor = "neutral";
-            };
+            getStateColor(d);
           } else {
             stateColor = "neutral";
           }
