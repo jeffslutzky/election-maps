@@ -16,8 +16,6 @@ var getMap = function() {
   var userMapDataObject = function() {
     if (userMapData) {
       var userMapDataClean = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
-      blueEV = userMapDataClean["blue"];
-      redEV = userMapDataClean["red"];
       return JSON.parse(userMapDataClean);
     };
   };
@@ -33,6 +31,11 @@ var getMap = function() {
     } else {
       stateColor = "neutral";
     }
+  };
+
+  if (userMapData) {
+    blueEV = userMapDataObject()["blue"];
+    redEV = userMapDataObject()["red"];
   };
 
   var projection = d3.geo.albersUsa()
@@ -169,15 +172,16 @@ var getMap = function() {
 
   var checkForWinner = function() {
     updateTally();
+    winnerHTML = '<div class="winner"><%= image_tag("check.png") %> winner </div>';
     if (blueEV >= 270) {
       if (!$(".dem-tally").children(".winner").length) {
-      $(".dem-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
+      $(".dem-tally").prepend(winnerHTML);
     }} else {
       $(".dem-tally").children(".winner").remove();
     };
     if (redEV >= 270) {
       if (!$(".rep-tally").children(".winner").length) {
-      $(".rep-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
+      $(".rep-tally").prepend(winnerHTML);
     }} else {
       $(".rep-tally").children(".winner").remove();
     };
