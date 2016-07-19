@@ -35,6 +35,18 @@ var getMap = function() {
 
   };
 
+  // var checkWinner = function(partyTally, evDisplay) {
+  //
+  //   if (partyTally >= 270) {
+  //     if (!$(evDisplay).children(".winner").length) {
+  //       $(evDisplay).prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
+  //     }
+  //   } else {
+  //     $(evDisplay).children(".winner").remove();
+  //   };
+  // };
+
+
   var userMapDataObject = function() {
     checkForWinner();
     if (userMapData) {
@@ -59,6 +71,7 @@ var getMap = function() {
   if (userMapData) {
     blueEV = userMapDataObject()["blue"];
     redEV = userMapDataObject()["red"];
+    unassignedEV = 538 - (blueEV + redEV);
   };
 
   var projection = d3.geo.albersUsa()
@@ -129,7 +142,7 @@ var getMap = function() {
             }
         })
         .text(function(d) { return d.ev; });
-});
+  });
 
   var click = function(d) {
     if (this.classList == "neutral") {
@@ -198,7 +211,6 @@ var getMap = function() {
     mapData = JSON.stringify(mapData);
     $("#map_data").val(mapData);
   };
-
 
   var reset = function() {
     d3.selectAll("path")
