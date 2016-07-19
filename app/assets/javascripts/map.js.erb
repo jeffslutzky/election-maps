@@ -172,7 +172,7 @@ var getMap = function() {
 
   var checkForWinner = function() {
     updateTally();
-    winnerHTML = '<div class="winner"><%= image_tag("check.png") %> winner </div>';
+    var winnerHTML = '<div class="winner"><%= image_tag("check.png") %> winner </div>';
     if (blueEV >= 270) {
       if (!$(".dem-tally").children(".winner").length) {
       $(".dem-tally").prepend(winnerHTML);
