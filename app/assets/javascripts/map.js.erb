@@ -13,7 +13,30 @@ var getMap = function() {
   var unassignedEV = 538;
   var stateColor = "neutral";
 
+  var checkForWinner = function() {
+    // checkWinner(blueEV, ".dem-tally");
+    // checkWinner(redEV, ".rep-tally");
+
+    if (blueEV >= 270) {
+      if (!$(".dem-tally").children(".winner").length) {
+        $(".dem-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
+      }
+    } else {
+      $(".dem-tally").children(".winner").remove();
+    };
+
+    if (redEV >= 270) {
+      if (!$(".rep-tally").children(".winner").length) {
+        $(".rep-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
+      }
+    } else {
+      $(".rep-tally").children(".winner").remove();
+    };
+
+  };
+
   var userMapDataObject = function() {
+    checkForWinner();
     if (userMapData) {
       var userMapDataClean = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
       return JSON.parse(userMapDataClean);
@@ -130,6 +153,7 @@ var getMap = function() {
       unassignedEV += d.ev;
     };
     updateTally();
+    updateHiddenForm();
     checkForWinner();
   };
 
@@ -155,6 +179,7 @@ var getMap = function() {
       blueEV += d.ev;
     };
     updateTally();
+    updateHiddenForm();
     checkForWinner();
   };
 
@@ -162,7 +187,9 @@ var getMap = function() {
     $("#dems").text(blueEV);
     $("#reps").text(redEV);
     $("#unassigned").text(unassignedEV);
+  };
 
+  var updateHiddenForm = function() {
     mapData = {};
     mapData["blue"] = blueEV;
     mapData["red"] = redEV;
@@ -172,26 +199,6 @@ var getMap = function() {
     $("#map_data").val(mapData);
   };
 
-  var checkForWinner = function() {
-    var winnerHTML = '<div class="winner"><%= image_tag("check.png") %> winner </div>';
-
-    if (blueEV >= 270) {
-      if (!$(".dem-tally").children(".winner").length) {
-        $(".dem-tally").prepend(winnerHTML);
-      }
-    } else {
-      $(".dem-tally").children(".winner").remove();
-    };
-
-    if (redEV >= 270) {
-      if (!$(".rep-tally").children(".winner").length) {
-        $(".rep-tally").prepend(winnerHTML);
-      }
-    } else {
-      $(".rep-tally").children(".winner").remove();
-    };
-
-  };
 
   var reset = function() {
     d3.selectAll("path")
