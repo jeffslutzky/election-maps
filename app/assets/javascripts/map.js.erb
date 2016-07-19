@@ -49,23 +49,6 @@ var getMap = function() {
     };
   };
 
-  // var getColor = function() {
-  //   var blueStateArray = userMapDataObject["blueStates"];
-  //   var redStateArray = userMapDataObject["redStates"];
-  //   $.each(json.features, function(i, attrs) {
-  //     var stateName = attrs.properties.name;
-  //     if ( blueStateArray.includes(stateName) ) {
-  //       stateColor = "blue";
-  //     } else if ( redStateArray.includes(stateName) ) {
-  //       stateColor = "red";
-  //     }
-  //   });
-  // };
-
-  // if (userMapData) {
-  //   userMapDataObject();
-  // };
-
   d3.json("/us-states.json", function(json) {
     svg.selectAll("path")
         .data(json.features)
@@ -73,18 +56,20 @@ var getMap = function() {
         .append("path")
         .attr("d", path)
         .attr("class", function(d) {
-          var blueStateArray = userMapDataObject()["blueStates"];
-          var redStateArray = userMapDataObject()["redStates"];
-          var stateName = d.properties.name;
-          if ( blueStateArray.includes(stateName) ) {
-            stateColor = "blue";
-          } else if ( redStateArray.includes(stateName) ) {
-            stateColor = "red";
+          if (userMapData) {
+            var blueStateArray = userMapDataObject()["blueStates"];
+            var redStateArray = userMapDataObject()["redStates"];
+            var stateName = d.properties.name;
+            if ( blueStateArray.includes(stateName) ) {
+              stateColor = "blue";
+            } else if ( redStateArray.includes(stateName) ) {
+              stateColor = "red";
+            } else {
+              stateColor = "neutral";
+            };
           } else {
             stateColor = "neutral";
-          };
-          stateColor = "neutral";
-
+          }
           return stateColor;
         })
         .attr("id", "states")
