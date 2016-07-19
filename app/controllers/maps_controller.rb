@@ -22,6 +22,10 @@ class MapsController < ApplicationController
   end
 
 
+  def update
+
+  end
+
   private
 
   def map_params
