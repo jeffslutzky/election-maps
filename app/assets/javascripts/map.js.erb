@@ -14,38 +14,19 @@ var getMap = function() {
   var stateColor = "neutral";
 
   var checkForWinner = function() {
-    // checkWinner(blueEV, ".dem-tally");
-    // checkWinner(redEV, ".rep-tally");
-
-    if (blueEV >= 270) {
-      if (!$(".dem-tally").children(".winner").length) {
-        $(".dem-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
-      }
-    } else {
-      $(".dem-tally").children(".winner").remove();
-    };
-
-    if (redEV >= 270) {
-      if (!$(".rep-tally").children(".winner").length) {
-        $(".rep-tally").prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
-      }
-    } else {
-      $(".rep-tally").children(".winner").remove();
-    };
-
+    checkPartyWinner(blueEV, ".dem-tally");
+    checkPartyWinner(redEV, ".rep-tally");
   };
 
-  // var checkWinner = function(partyTally, evDisplay) {
-  //
-  //   if (partyTally >= 270) {
-  //     if (!$(evDisplay).children(".winner").length) {
-  //       $(evDisplay).prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
-  //     }
-  //   } else {
-  //     $(evDisplay).children(".winner").remove();
-  //   };
-  // };
-
+  var checkPartyWinner = function(partyTally, evDisplay) {
+    if (partyTally >= 270) {
+      if (!$(evDisplay).children(".winner").length) {
+        $(evDisplay).prepend('<div class="winner"><%= image_tag("check.png") %> winner </div>');
+      }
+    } else {
+      $(evDisplay).children(".winner").remove();
+    };
+  };
 
   var userMapDataObject = function() {
     checkForWinner();
