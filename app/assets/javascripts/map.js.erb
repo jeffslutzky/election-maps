@@ -13,6 +13,18 @@ var getMap = function() {
   var unassignedEV = 538;
   var stateColor = "neutral";
 
+  var userMapDataObject = function() {
+    if (userMapData) {
+      var userMapDataClean = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
+      return JSON.parse(userMapDataClean);
+    };
+  };
+
+  if (userMapData) {
+    blueEV = userMapDataObject()["blue"];
+    redEV = userMapDataObject()["red"];
+  };
+
   var projection = d3.geo.albersUsa()
       .translate([w/2, h/2])
       .scale([1500]);
@@ -42,12 +54,6 @@ var getMap = function() {
 
   svg.call(tip);
 
-  var userMapDataObject = function() {
-    if (userMapData) {
-      var userMapDataClean = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
-      return JSON.parse(userMapDataClean);
-    };
-  };
 
   d3.json("/us-states.json", function(json) {
     svg.selectAll("path")
