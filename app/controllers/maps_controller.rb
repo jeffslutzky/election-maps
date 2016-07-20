@@ -23,13 +23,15 @@ class MapsController < ApplicationController
 
 
   def update
-
+    @user = current_user
+    @map = Map.find(params[:id])
+    binding.pry
   end
 
   private
 
   def map_params
-    params.require(:map).permit(:user_id, :name, :blue, :red, :blue_states, :red_states, :gray, :data)
+    params.require(:map).permit(:user_id, :name, :data)
   end
 
 end

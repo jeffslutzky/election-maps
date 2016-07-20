@@ -29,8 +29,11 @@
           <% if @map %>
 
             <!-- update map -->
+            <%= form_for @map, url: user_map_path(@user, @map) do |f| %>
+            <%= f.submit "Update map", class:"btn btn-default" %>
 
-          
+            <% end %>
+
 
           <% else %>
 
