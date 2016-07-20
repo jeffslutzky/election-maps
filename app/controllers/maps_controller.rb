@@ -25,7 +25,12 @@ class MapsController < ApplicationController
   def update
     @user = current_user
     @map = Map.find(params[:id])
-    binding.pry
+    @data = JSON.parse(@map.data)
+    @blue_EV = @data["blue"]
+    @red_EV = @data["red"]
+    @unassigned_EV = 538 - (@blue_EV + @red_EV)
+    @map.update(data: @map.data)
+    redirect_to user_map_path(@user, @map)
   end
 
   private
