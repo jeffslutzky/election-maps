@@ -11,7 +11,6 @@ class MapsController < ApplicationController
     redirect_to user_path(current_user.id)
   end
 
-
   def show
     @user = current_user
     @map = Map.find(params[:id])
@@ -20,7 +19,6 @@ class MapsController < ApplicationController
     @red_EV = @data["red"]
     @unassigned_EV = 538 - (@blue_EV + @red_EV)
   end
-
 
   def update
     @user = current_user
@@ -31,6 +29,13 @@ class MapsController < ApplicationController
     @unassigned_EV = 538 - (@blue_EV + @red_EV)
     @map.update(map_params)
     redirect_to user_map_path(@user, @map)
+  end
+
+  def destroy
+    user = current_user
+    map = Map.find(params[:id])
+    map.destroy
+    redirect_to user_path(current_user.id)
   end
 
   private
