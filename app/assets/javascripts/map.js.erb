@@ -52,6 +52,8 @@ var getMap = function() {
   if (userMapData) {
     blueEV = userMapDataObject()["blue"];
     redEV = userMapDataObject()["red"];
+    blueStates = userMapDataObject()["blueStates"];
+    redStates = userMapDataObject()["redStates"];
     unassignedEV = 538 - (blueEV + redEV);
   };
 

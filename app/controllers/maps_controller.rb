@@ -29,7 +29,7 @@ class MapsController < ApplicationController
     @blue_EV = @data["blue"]
     @red_EV = @data["red"]
     @unassigned_EV = 538 - (@blue_EV + @red_EV)
-    @map.update(data: @map.data)
+    @map.update(map_params)
     redirect_to user_map_path(@user, @map)
   end
 
