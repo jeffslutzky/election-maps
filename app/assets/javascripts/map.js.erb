@@ -29,6 +29,7 @@ var getMap = function() {
   };
 
   var userMapDataObject = function() {
+    // do stuff if it's loading an existing map
     checkForWinner();
     if (userMapData) {
       var userMapDataClean = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");

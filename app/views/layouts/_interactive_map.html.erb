@@ -24,32 +24,24 @@
       </div>
       <div class="list-group-item">
         <% if user_signed_in? %>
+          <h4>Hi, <%= link_to @user.name, user_path(@user) %>.</h4>
           <%= link_to "Log out", logout_path, class: "btn btn-default navbar-btn" %>
 
           <% if @map %>
-
             <!-- update map -->
             <%= form_for [@user, @map], url: user_map_path(@user, @map) do |f| %>
-
-            <%= f.hidden_field :data %>
-            <%= f.submit "Update map", class:"btn btn-default" %>
-
+              <%= f.hidden_field :data %>
+              <%= f.submit "Update map", class:"btn btn-default" %>
             <% end %>
-
-
           <% else %>
-
             <!-- save map -->
             <%= form_for Map.new, url: user_maps_path(@user) do |f| %>
-            <%= f.label "Name" %><br />
-            <%= f.text_field :name %><br />
-            <%= f.hidden_field :data %>
-            <%= f.submit "Save current map", class:"btn btn-default" %>
+              <%= f.label "Map name" %><br />
+              <%= f.text_field :name %><br />
+              <%= f.hidden_field :data %>
+              <%= f.submit "Save current map", class:"btn btn-default" %>
             <% end %>
-
           <% end %>
-
-
 
         <% else %>
 
