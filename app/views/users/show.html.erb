@@ -1,6 +1,4 @@
-<h3>Hi, <%= @user.name %>. This is your user page.</h3>
-
-<h3>Here are your saved maps.</h3>
+<h3>Hi, <%= @user.name %>. Here are your saved maps.</h3>
 <div>
 <% @user.maps.each do |map| %>
   <h4><%= map.name %></h4>
