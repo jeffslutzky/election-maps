@@ -56,6 +56,10 @@
 
         <% end %>
 
+        <% flash.each do |k, message| %>
+          <div class="alert alert-danger"><%= message %></div>
+        <% end %>
+
       </div>
     </div>
 
