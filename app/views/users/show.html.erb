@@ -8,18 +8,15 @@
 
       <h4><%= map.name %> - <%= link_to "see map", user_map_path(@user.id, map.id), "data-no-turbolink" => true %> <%= link_to "delete map", user_map_path(@user.id, map.id), method: :delete, "data-no-turbolink" => true %></h4>
       <% map_data = JSON.parse(map.data) %>
-      <div class="list-group-item">
-        Unassigned: <div id="unassigned"><%= 538 - (map_data["blue"] + map_data["red"]) %></div><br />
-      </div>
       <div class="list-group-item dem-tally">
         Democrats: <div id="dems"><%= map_data["blue"] %> (view states) </div><br />
+        <h5><%= map_data["blueStates"] %></h5>
       </div>
       <div class="list-group-item rep-tally">
         Republicans: <div id="reps"><%= map_data["red"] %> (view states) </div><br />
+        <h5><%= map_data["redStates"] %></h5>
       </div>
 
-      <h5>Blue states: <%= map_data["blueStates"] %></h5>
-      <h5>Red states: <%= map_data["redStates"] %></h5>
 
       <h5> </h5>
 
