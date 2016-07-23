@@ -104,6 +104,13 @@ img {
   width: 19px;
 }
 
-.maps {
+.flex-container {
+  display: flex;
+}
 
+.flex-item {
+  width: 250px;
+  border: 1px solid gray;
+  padding: 10px;
+  margin: 20px;
 }

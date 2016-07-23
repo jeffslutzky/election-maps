@@ -1,24 +1,28 @@
-<div class="container-fluid">
 
   <h3>Hi, <%= @user.name %>. Here are your saved maps.</h3>
 
-  <div class="list-group maps">
+  <h4>create new map</h4>
+
+  <div class="flex-container">
 
     <% @user.maps.each do |map| %>
 
-      <h4><%= map.name %> - <%= link_to "see map", user_map_path(@user.id, map.id), "data-no-turbolink" => true %> <%= link_to "delete map", user_map_path(@user.id, map.id), method: :delete, "data-no-turbolink" => true %></h4>
-      <% map_data = JSON.parse(map.data) %>
-      <div class="list-group-item dem-tally">
-        Democrats: <div id="dems"><%= map_data["blue"] %> (view states) </div><br />
-        <h5><%= map_data["blueStates"] %></h5>
-      </div>
-      <div class="list-group-item rep-tally">
-        Republicans: <div id="reps"><%= map_data["red"] %> (view states) </div><br />
-        <h5><%= map_data["redStates"] %></h5>
-      </div>
+      <div class="flex-item">
 
+        <h4><%= link_to "map: #{map.name}", user_map_path(@user.id, map.id), "data-no-turbolink" => true %> | <%= link_to "delete map", user_map_path(@user.id, map.id), method: :delete, "data-no-turbolink" => true %></h4>
+        <% map_data = JSON.parse(map.data) %>
 
-      <h5> </h5>
+        <div class="dem-tally">
+          Democrats: <div id="dems"><%= map_data["blue"] %></div><br />
+          <h5><%= map_data["blueStates"].sort.join(", ") %></h5>
+        </div>
+
+        <div class="rep-tally">
+          Republicans: <div id="reps"><%= map_data["red"] %></div><br />
+          <h5><%= map_data["redStates"].join(", ") %></h5>
+        </div>
+
+      </div>
 
     <% end %>
 
