@@ -10,7 +10,7 @@
 
       <div class="flex-item">
 
-        <h4><%= link_to "map: #{map.name}", user_map_path(@user.id, map.id), "data-no-turbolink" => true %> | <%= link_to "delete map", user_map_path(@user.id, map.id), method: :delete, "data-no-turbolink" => true %></h4>
+        <h4><%= link_to "map: #{map.name}", user_map_path(@user.id, map.id), "data-no-turbolink" => true %> | <%= link_to "delete map", user_map_path(@user.id, map.id), method: :delete, "data-no-turbolink" => true, data: {confirm: 'Are you sure?'} %></h4>
         <% map_data = JSON.parse(map.data) %>
 
         <div class="dem-tally">
