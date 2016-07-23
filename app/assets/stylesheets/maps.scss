@@ -3,10 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .list-group {
-  width: 360px;
+  width: 530px;
   display:inline-block;
   font-size: 18px;
   line-height: 23px;
+  margin-bottom: 0px;
+}
+
+.container-fluid {
+  margin-bottom: 50px;
 }
 
 body a {
@@ -34,6 +39,10 @@ body .list-group-item.active:hover {
   margin-left: 10px;
 }
 
+.alert {
+  margin-top: 10px;
+}
+
 svg {
   display: block;
   margin: auto;
@@ -41,6 +50,14 @@ svg {
 
 .headers {
   text-align: center;
+}
+
+.logout-btn {
+  margin-left: 5px;
+}
+
+.map {
+  margin-top: -30px;
 }
 
 #states {
@@ -71,6 +88,8 @@ svg {
 
 .dem-tally {
   color: blue;
+  display: inline;
+  margin: 0px 20px;
 }
 
 #reps {
@@ -79,6 +98,7 @@ svg {
 
 .rep-tally {
   color: red;
+  display: inline;
 }
 
 #unassigned {
@@ -122,7 +142,7 @@ body {
 }
 
 footer {
-  position: absolute;
+  position:  fixed;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */

@@ -28,7 +28,7 @@ class MapsController < ApplicationController
     red_EV = data["red"]
     unassigned_EV = 538 - (blue_EV + red_EV)
     map.update(map_params)
-    redirect_to user_map_path(user, map)
+    redirect_to user_map_path(user, map), notice: "Map updated."
   end
 
   def destroy

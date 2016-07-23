@@ -209,4 +209,8 @@ var getMap = function() {
 
   $(".reset").on("click", reset);
 
+  $(".alert").delay(2500).slideUp(200, function() {
+    $(this).alert('close');
+  });
+
 }

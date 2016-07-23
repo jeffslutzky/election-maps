@@ -7,27 +7,30 @@
       Left-click: blue > red > unassigned | Right-click: red > blue > unassigned<br />
     </p>
 
-    <div class="list-group">
+    <div class="list-group electoral-box">
       <div class="list-group-item active">
-        Electoral vote tally <div class="btn btn-default reset">Reset</div>
+        <div class="btn btn-default reset">Reset electoral vote tally</div>
       </div>
       <div class="list-group-item">
-        Unassigned: <div id="unassigned"><%= @unassigned_EV %></div><br />
+        Unassigned: <div id="unassigned"><%= @unassigned_EV %></div>
+
+        <div class="dem-tally">
+          Democrats: <div id="dems"><%= @blue_EV %></div>
+        </div>
+        <div class="rep-tally">
+          Republicans: <div id="reps"><%= @red_EV %></div>
+        </div>
       </div>
-      <div class="list-group-item dem-tally">
-        Democrats: <div id="dems"><%= @blue_EV %></div><br />
-      </div>
-      <div class="list-group-item rep-tally">
-        Republicans: <div id="reps"><%= @red_EV %></div><br />
-      </div>
+
       <div class="list-group-item">
 
         <% if user_signed_in? %>
-          <h4>Hi, <%= link_to @user.name, user_path(@user), "data-no-turbolink" => true %>. <%= link_to "Log out", logout_path, class: "btn btn-default navbar-btn" %></h4>
+          <h4>Hi, <%= link_to @user.name, user_path(@user), "data-no-turbolink" => true %>. <%= link_to "Log out", logout_path, class: "btn btn-default navbar-btn logout-btn" %></h4>
 
           <% if @map %>
 
             <!-- update map -->
+            <h4>Map name: "<%= @map.name %>"</h4>
             <%= form_for [@user, @map], url: user_map_path(@user, @map) do |f| %>
               <%= f.hidden_field :data %>
               <%= f.submit "Update map", class:"btn btn-default" %>
