@@ -1,23 +1,35 @@
-<%= render 'layouts/header' %>
+<div class="container">
 
-<%= form_for(@user) do |f| %>
+  <div class="list-group">
 
-  <% if @user.errors.any? %>
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved: </h2>
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <div class="alert alert-danger"> <%= message %> </div>
+    <div class="list-group-item">
+
+      <%= render 'layouts/header' %>
+
+      <%= form_for(@user) do |f| %>
+
+        <% if @user.errors.any? %>
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved: </h2>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <div class="alert alert-danger"> <%= message %> </div>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name %><br />
+        <%= f.label :password %>
+        <%= f.password_field :password %><br />
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %><br/>
+
+        <%= f.submit "Sign Up", class: "btn btn-default navbar-btn"%>
+
       <% end %>
-    </ul>
-  <% end %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %><br />
-  <%= f.label :password %>
-  <%= f.password_field :password %><br />
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %><br/>
+    </div>
 
-  <%= f.submit "Sign Up"%>
+  </div>
 
-<% end %>
+</div>
