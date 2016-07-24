@@ -33,10 +33,15 @@ body .list-group-item.active:hover {
 
 .btn {
   padding: 5px 7px 2px;
+  margin: 0px 2px;
 }
 
 .reset.btn {
   margin-left: 10px;
+}
+
+.save-form {
+  display: none;
 }
 
 .alert {
@@ -50,10 +55,6 @@ svg {
 
 .headers {
   text-align: center;
-}
-
-.logout-btn {
-  margin-left: 5px;
 }
 
 .map {

@@ -1,22 +1,19 @@
 <div class="container">
 
-<div class="headers">
-
   <%= render 'layouts/header' %>
 
   <div class="list-group">
 
     <div class="list-group-item">
 
-
       <%= form_for(@user) do |f| %>
 
         <% if @user.errors.any? %>
           <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved: </h2>
           <ul>
-            <% @user.errors.full_messages.each do |message| %>
-              <div class="alert alert-danger"> <%= message %> </div>
-            <% end %>
+          <% @user.errors.full_messages.each do |message| %>
+            <div class="alert alert-danger"> <%= message %> </div>
+          <% end %>
           </ul>
         <% end %>
 
@@ -34,7 +31,5 @@
     </div>
 
   </div>
-
-</div>
 
 </div>

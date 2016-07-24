@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       log_in(@user)
-      redirect_to user_path(@user.id)
+      redirect_to root_path(@user.id), notice: "Thanks for signing up!"
     else
       render :new
     end
