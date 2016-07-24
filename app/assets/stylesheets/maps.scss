@@ -40,6 +40,11 @@ body .list-group-item.active:hover {
   margin-left: 10px;
 }
 
+.delete-btn {
+  position: relative;
+  float:right;
+}
+
 .save-form {
   display: none;
 }
@@ -141,11 +146,15 @@ img {
   width: 250px;
   border: 1px solid gray;
   padding: 10px;
-  margin: 20px;
+  margin: 16px;
 }
 
 .flex-item .dem-tally {
   margin: 0px;
+}
+
+.flex-item h4 {
+  margin-top: 3px;
 }
 
 body {

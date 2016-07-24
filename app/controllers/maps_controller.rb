@@ -5,10 +5,13 @@ class MapsController < ApplicationController
   end
 
   def create
-    map = Map.create(map_params)
+   map = Map.create(map_params)
     map.user = current_user
-    map.save
-    redirect_to user_path(current_user.id), notice: "Map created."
+    if map.save
+      redirect_to user_path(current_user.id), notice: "Map created."
+    else
+      redirect_to root_path, notice: "Sorry, I can't save a blank map."
+    end
   end
 
   def show
