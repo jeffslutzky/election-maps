@@ -89,7 +89,6 @@ svg {
 .dem-tally {
   color: blue;
   display: inline;
-  margin: 0px 20px;
 }
 
 #reps {
@@ -106,6 +105,12 @@ svg {
 #unassigned {
   display: inline;
 }
+
+.unassigned-tally {
+  display: inline;
+  margin: 0px 40px;
+}
+
 
 .d3-tip {
   line-height: 1;

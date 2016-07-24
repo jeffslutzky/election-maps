@@ -2,13 +2,16 @@
 
 <%= render 'layouts/header' %>
 
+<% if current_user == @user %>
+
 <% flash.each do |k, message| %>
   <div class="alert alert-success"><%= message %></div>
 <% end %>
 
   <h3>Hi, <%= @user.name %>. Here are your saved maps.</h3>
 
-  <div class="btn btn-default"><%= link_to "create a new map", root_path %></div>
+  <%= link_to "create a new map", root_path, class: "btn btn-default" %>
+  <%= link_to "Log out", logout_path, class: "btn btn-default" %>
 
   <div class="flex-container">
 
@@ -34,6 +37,14 @@
     <% end %>
 
   </div>
+
+  <% else %>
+
+    <h4>Sorry, a user's page is only visible by that user.</h4>
+
+    <%= link_to "return to main page", root_path, class:"btn btn-default" %>
+
+  <% end %>
 
 </div>
 

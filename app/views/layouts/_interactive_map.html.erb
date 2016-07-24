@@ -12,11 +12,14 @@
         <div class="btn btn-default reset">Reset electoral vote tally</div>
       </div>
       <div class="list-group-item">
-        Unassigned: <div id="unassigned"><%= @unassigned_EV %></div>
-
         <div class="dem-tally">
           Democrats: <div id="dems"><%= @blue_EV %></div>
         </div>
+
+        <div class="unassigned-tally">
+          Unassigned: <div id="unassigned"><%= @unassigned_EV %></div>
+        </div>
+
         <div class="rep-tally">
           Republicans: <div id="reps"><%= @red_EV %></div>
         </div>
@@ -25,7 +28,7 @@
       <div class="list-group-item">
 
         <% if user_signed_in? %>
-          <h4>Hi, <%= link_to @user.name, user_path(@user), "data-no-turbolink" => true %>. <%= link_to "Log out", logout_path, class: "btn btn-default navbar-btn logout-btn" %></h4>
+          <h4>Hi, <%= link_to @user.name, user_path(@user), "data-no-turbolink" => true %>. <%= link_to "Log out", logout_path, class: "btn btn-default" %></h4>
 
           <% if @map %>
 
@@ -47,6 +50,7 @@
             <% end %>
 
           <% end %>
+          <%= link_to "go to a new blank map", root_path, class:"btn btn-default" %>
 
         <% else %> <!-- user not signed in -->
 
@@ -55,10 +59,10 @@
             <%= text_field_tag :name %>
             <%= label_tag :password %>
             <%= password_field_tag :password %>
-            <%= submit_tag "Log in", class: "btn btn-default navbar-btn" %> or
+            <%= submit_tag "Log in", class: "btn btn-default" %> or
           <% end %>
 
-          <%= link_to "Sign up here", signup_path, class: "btn btn-default navbar-btn" %>
+          <%= link_to "Sign up here", signup_path, class: "btn btn-default" %>
 
         <% end %>
 
