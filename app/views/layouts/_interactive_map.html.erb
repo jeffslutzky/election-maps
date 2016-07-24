@@ -1,9 +1,9 @@
 <div class="container-fluid">
 
   <div class="headers">
-    <p>
-      <h1>2016 Electoral College Vote Calculator</h1>
+    <%= render 'layouts/header' %>
 
+    <p>
       Left-click: blue > red > unassigned | Right-click: red > blue > unassigned<br />
     </p>
 
@@ -63,7 +63,7 @@
         <% end %>
 
         <% flash.each do |k, message| %>
-          <div class="alert alert-danger"><%= message %></div>
+          <div class="alert alert-success"><%= message %></div>
         <% end %>
 
       </div>

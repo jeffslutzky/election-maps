@@ -209,8 +209,12 @@ var getMap = function() {
 
   $(".reset").on("click", reset);
 
-  $(".alert").delay(3000).slideUp(200, function() {
-    $(this).alert('close');
-  });
+  var dismissAlert = function() {
+    $(".alert-success").delay(3000).slideUp(200, function() {
+      $(this).alert('close');
+    });
+  };
+
+  dismissAlert();
 
 }

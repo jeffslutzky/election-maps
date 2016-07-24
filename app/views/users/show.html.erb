@@ -1,8 +1,14 @@
 <div class="container">
 
+<%= render 'layouts/header' %>
+
+<% flash.each do |k, message| %>
+  <div class="alert alert-success"><%= message %></div>
+<% end %>
+
   <h3>Hi, <%= @user.name %>. Here are your saved maps.</h3>
 
-  <h4><%= link_to "create a new map", root_path %> </h4>
+  <div class="btn btn-default"><%= link_to "create a new map", root_path %></div>
 
   <div class="flex-container">
 
@@ -30,3 +36,9 @@
   </div>
 
 </div>
+
+<script>
+  $(".alert-success").delay(3000).slideUp(200, function() {
+    $(this).alert('close');
+  });
+</script>

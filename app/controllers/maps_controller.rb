@@ -8,7 +8,7 @@ class MapsController < ApplicationController
     map = Map.create(map_params)
     map.user = current_user
     map.save
-    redirect_to user_path(current_user.id)
+    redirect_to user_path(current_user.id), notice: "Map created."
   end
 
   def show
