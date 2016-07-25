@@ -36,9 +36,12 @@ class MapsController < ApplicationController
 
   def destroy
     user = current_user
-    map = Map.find(params[:id])
-    map.destroy
-    redirect_to user_path(current_user.id)
+    @map = Map.find(params[:id])
+    @map.destroy
+    respond_to do |format|
+      format.js { render "destroy"}
+    end
+    # redirect_to user_path(current_user.id)
   end
 
   private

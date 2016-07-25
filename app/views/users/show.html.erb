@@ -17,9 +17,9 @@
 
     <% @user.maps.each do |map| %>
 
-      <div class="flex-item">
+      <div class="flex-item" data-id="<%= map.id %>">
 
-        <h4><%= link_to "map: #{map.name}", user_map_path(@user.id, map.id), "data-no-turbolink" => true %> <%= link_to "X", user_map_path(@user.id, map.id), class: "btn btn-default delete-btn", method: :delete, "data-no-turbolink" => true, data: {confirm: 'Are you sure?'} %></h4>
+        <h4><%= link_to "map: #{map.name}", user_map_path(@user.id, map.id), "data-no-turbolink" => true %> <%= link_to "X", user_map_path(current_user, map), class: "btn btn-default delete-btn", method: :delete, "data-no-turbolink" => true, data: {confirm: 'Are you sure you want to delete this map?'}, remote: true %></h4>
         <% map_data = JSON.parse(map.data) %>
 
         <div class="dem-tally">
