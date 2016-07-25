@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .list-group {
-  width: 540px;
+  width: 600px;
   display:inline-block;
   font-size: 18px;
   line-height: 23px;
@@ -47,6 +47,10 @@ body .list-group-item.active:hover {
 
 .save-form {
   display: none;
+}
+
+.btn.login-btn {
+  margin-bottom: 2px;
 }
 
 .btn.real-save-btn {
@@ -118,7 +122,7 @@ svg {
 
 .unassigned-tally {
   display: inline;
-  margin: 0px 40px;
+  margin: 0px 80px;
 }
 
 

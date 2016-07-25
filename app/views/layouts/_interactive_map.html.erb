@@ -60,14 +60,14 @@
         <% else %> <!-- user not signed in -->
 
           <%= form_tag(login_path, method: 'post') do %>
-            <%= label_tag :name %>
+            <%= label_tag :name, "Name:" %>
             <%= text_field_tag :name %>
-            <%= label_tag :password %>
+            <%= label_tag :password, "Password:" %>
             <%= password_field_tag :password %>
-            <%= submit_tag "Log in", class: "btn btn-default" %> or
+            <%= submit_tag "Log in", class: "btn btn-default login-btn" %>
           <% end %>
 
-          <%= link_to "Sign up here", signup_path, class: "btn btn-default" %>
+          or <%= link_to "Sign up here", signup_path, class: "btn btn-default" %>
 
         <% end %>
 
