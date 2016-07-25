@@ -28,18 +28,25 @@ var getMap = function() {
     };
   };
 
-  var userMapDataObject = function() {
-    // do stuff if it's loading an existing map
+  var getUserMapData = function() {
+    // if loading an existing map
+    var userMapDataClean = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
+    userMapDataParsed = JSON.parse(userMapDataClean);
+    blueEV = userMapDataParsed["blue"];
+    redEV = userMapDataParsed["red"];
+    blueStates = userMapDataParsed["blueStates"];
+    redStates = userMapDataParsed["redStates"];
+    unassignedEV = 538 - (blueEV + redEV);
     checkForWinner();
-    if (userMapData) {
-      var userMapDataClean = userMapData.replace(/&quot;/g, '"').replace(/=&gt;/g, ":");
-      return JSON.parse(userMapDataClean);
-    };
+  };
+
+  if (userMapData) {
+    getUserMapData();
   };
 
   var getStateColor = function(d) {
-    var blueStateArray = userMapDataObject()["blueStates"];
-    var redStateArray = userMapDataObject()["redStates"];
+    var blueStateArray = userMapDataParsed["blueStates"];
+    var redStateArray = userMapDataParsed["redStates"];
     var stateName = d.properties.name;
     if ( blueStateArray.includes(stateName) ) {
       stateColor = "blue";
@@ -48,14 +55,6 @@ var getMap = function() {
     } else {
       stateColor = "neutral";
     }
-  };
-
-  if (userMapData) {
-    blueEV = userMapDataObject()["blue"];
-    redEV = userMapDataObject()["red"];
-    blueStates = userMapDataObject()["blueStates"];
-    redStates = userMapDataObject()["redStates"];
-    unassignedEV = 538 - (blueEV + redEV);
   };
 
   var projection = d3.geo.albersUsa()

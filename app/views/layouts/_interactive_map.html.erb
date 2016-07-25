@@ -36,7 +36,7 @@
             <h4>Map name: "<%= @map.name %>"</h4>
             <%= form_for [@user, @map], url: user_map_path(@user, @map) do |f| %>
               <%= f.hidden_field :data %>
-              <%= f.submit "Update map", class:"btn btn-default" %>
+              <%= f.submit "Update map", class:"btn btn-default update-btn" %>
             <% end %>
 
           <% else %>
