@@ -22,6 +22,15 @@
       Left-click: blue > red > unassigned | Right-click: red > blue > unassigned<br />
     </p>
 
+
+    <% if !user_signed_in? %>
+
+      <p>
+        Play around! If you want to save what you make, <%= link_to "create an account", signup_path %> or <%= link_to "log in", login_path %> before playing around.
+      </p>
+
+    <% end %>
+
     <div class="list-group">
       <div class="list-group-item active">
         <div class="btn btn-default reset">Reset tally</div>
