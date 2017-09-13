@@ -8,4 +8,4 @@ This electoral college calculator contains several features:
 
 * jQuery instantly updates tally and indicates winner
 
-See the working app at http://electoral-college.herokuapp.com/.
+See the working app at http://electoral-college.herokuapp.com.
